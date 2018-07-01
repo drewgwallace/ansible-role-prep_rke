@@ -1,0 +1,28 @@
+---
+# Purpose: Add local public key to target machine
+# Last Updated: 2018.07.01
+# Notes:
+
+
+- name: Check that .ssh directory exists
+  file:
+    path: "{{ ansible_env.HOME }}/.ssh"
+    state: directory
+
+- name: Check that the .ssh/authorized_keys exists
+  stat:
+    path: "{{ ansible_env.HOME }}/.ssh/authorized_keys"
+  register: result
+
+- name: Create the file, if it doesnt exist already
+  file:
+    path: "{{ ansible_env.HOME }}/.ssh/authorized_keys"
+    state: touch
+  when: not result.stat.exists|bool
+
+- name: Add ansible authorized_key line item if not present
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.ssh/authorized_keys"
+    state: present
+    # insertafter: EOF
+    line: "{{ lookup('file', path_to_ssh_pub_key) }}"

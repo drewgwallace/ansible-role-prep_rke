@@ -1,0 +1,51 @@
+---
+# Purpose: Check docker version and install docker if not found
+# Last Updated: 2018.07.01
+# Notes: There was an issue with Ansible not accepting the results var in the second block, so I reregistered the var (Ansible 2.5.4)
+
+
+- command: docker version
+  register: result
+  failed_when: false
+  changed_when: false
+
+- block:
+
+  - name: Add docker gpg key
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+
+  - apt_repository:
+      repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} test"
+      state: present
+      filename: docker
+
+  - name: Update repositories cache and install docker-ce package at specified version
+    apt:
+      name: "docker-ce={{ docker_version }}"
+      update_cache: yes
+
+  - name: Add remote user to docker group
+    user:
+      name: "{{ ansible_user }}"
+      append: yes
+      groups: docker
+      state: present
+
+  when: result.rc == 2
+  become: true
+
+- command: docker version
+  register: result
+  failed_when: false
+  changed_when: false
+
+- block:
+
+  - debug: msg="Not a supported rke Docker version!"
+
+  when:
+    - "\"1.12.6\" not in result.stdout"
+    - "\"1.13.1\" not in result.stdout"
+    - "\"17.03.2\" not in result.stdout"

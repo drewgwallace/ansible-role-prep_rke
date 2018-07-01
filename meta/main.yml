@@ -1,0 +1,28 @@
+---
+# Purpose: Meta file for Ansible Galaxy
+# Last Updated: 2018.07.01
+# Notes:
+
+
+dependencies: []
+
+galaxy_info:
+  author: drewgwallace
+  description: Prepare server for Rancher Kubernetes Engine (rke)
+  company:
+  license: MIT
+  min_ansible_version: 2.4
+  platforms:
+    - name: Debian
+      versions:
+      - all
+    - name: Ubuntu
+      versions:
+      - all
+  galaxy_tags:
+    - system
+    - kubernetes
+    - k8sS
+    - automation
+    - rancher
+    - containers

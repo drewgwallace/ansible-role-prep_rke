@@ -1,0 +1,10 @@
+---
+# Purpose: Main task list import for role
+# Last Updated: 2018.07.01
+# Notes:
+
+- include_tasks: ansible_deps.yml
+
+- include_tasks: add_authorized_key.yml
+
+- include_tasks: docker_install.yml

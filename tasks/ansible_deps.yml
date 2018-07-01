@@ -1,0 +1,9 @@
+---
+# Purpose: Make sure target machine has Ansible dependencies
+# Last Updated: 2018.07.01
+# Notes:
+
+
+- name: Ensure Ansible dependencies installed
+  raw: apt-get update && apt-get install -y python python-simplejson
+  become: true

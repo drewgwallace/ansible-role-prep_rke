@@ -1,0 +1,9 @@
+---
+# Purpose: Default variables for role
+# Last Updated: 2018.07.01
+# Notes:
+
+
+path_to_ssh_pub_key: "{{ lookup('env','HOME') }}/.ssh/id_rsa.pub"
+
+docker_version: "17.03.2~ce~3-0~ubuntu"
