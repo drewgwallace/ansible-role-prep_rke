@@ -7,9 +7,9 @@
 dependencies: []
 
 galaxy_info:
+  role_name: prep_rke
   author: drewgwallace
   description: Prepare server for Rancher Kubernetes Engine (rke)
-  company: Self
   license: MIT
   min_ansible_version: 2.4
   platforms:
