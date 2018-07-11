@@ -7,9 +7,15 @@
 dependencies: []
 
 galaxy_info:
-  role_name: prep_rke
   author: drewgwallace
   description: Prepare server for Rancher Kubernetes Engine (rke)
+  galaxy_tags:
+    - system
+    - kubernetes
+    - k8sS
+    - automation
+    - rancher
+    - containers
   license: MIT
   min_ansible_version: 2.4
   platforms:
@@ -19,10 +25,4 @@ galaxy_info:
     - name: Ubuntu
       versions:
       - all
-  galaxy_tags:
-    - system
-    - kubernetes
-    - k8sS
-    - automation
-    - rancher
-    - containers
+  role_name: prep_rke
