@@ -12,7 +12,7 @@
     - hosts: all
       tasks:
       - include_role:
-          name: drewgwallace.ansible-role-prep_rke
+          name: drewgwallace.prep_rke
         vars:
           path_to_ssh_pub_key: "/home/<b>USER</b>/.ssh/id_rsa.pub"
           docker_version: "17.03.2~ce~3-0~ubuntu"
