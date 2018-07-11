@@ -3,7 +3,7 @@ dependencies: []
 
 galaxy_info:
   author: drewgwallace
-  description: Prepare server for Rancher Kubernetes Engine (rke)
+  description: Prepare server for Rancher Kubernetes Engine (rke).
   galaxy_tags:
     - system
     - kubernetes
