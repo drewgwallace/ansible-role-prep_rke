@@ -1,6 +1,6 @@
 ---
 # Purpose: Check docker version and install docker if not found
-# Last Updated: 2018.07.01
+# Last Updated: 2018.08.21
 # Notes: There was an issue with Ansible not accepting the results var in the second block, so I reregistered the var (Ansible 2.5.4)
 
 
@@ -21,10 +21,18 @@
       state: present
       filename: docker
 
+  - name: Update repositories cache and install docker-ce package to latest version
+    apt:
+      name: "docker-ce"
+      update_cache: yes
+      state: latest
+    when: "'latest' in docker_version|lower"
+
   - name: Update repositories cache and install docker-ce package at specified version
     apt:
       name: "docker-ce={{ docker_version }}"
       update_cache: yes
+    when: "'latest' not in docker_version|lower"
 
   - name: Add remote user to docker group
     user:
